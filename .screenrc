@@ -1,0 +1,45 @@
+#########################
+termcap xterm ':as=^N:ae=^O:aE=\E(B\E)0:ac=``aaffggjjkkllmmnnooppqqrr ssttuuvvwwxxyyzz{{||}}~~..--++  ,,hhII00:'
+terminfo xterm 'smacs=^N, rmacs=^O, enacs=\E(B\E)0, acsc=``aaffggjjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~ ~..--++\054\054hhII00'
+termcapinfo xterm-color|xterm|xterms|xs|rxvt ti@:te@
+#termcapinfo xterm ti@:te@
+
+##############################################
+startup_message off
+#deflogin off
+#multiuser on
+defscrollback 1000
+silencewait 15
+msgwait 15
+autodetach on
+vbell off
+shell bash
+shelltitle '$|bash'
+
+#########################
+caption always '%{= kG}[ %{= kw}%-Lw%40>%{r}(%{W}%n*%f %h%{r})%{w}%+Lw%< %{= kG}]'
+
+########################
+#bell_msg 'Bell in window %n ^G'
+bell_msg "%C -> %n%f %t activity! ^G"
+
+#activity 'Activity in window %n ^G'
+activity "activity in %n ^G (%t) [%w:%s]~"
+
+########################
+escape ``
+escape `e
+bind = resize =
+bind + resize +3
+bind - resize -3
+bindkey -k F1 prev
+bindkey -k F2 next
+
+#Fix the prev command... not sure why this works...
+bindkey "^?" prev
+bindkey "^?"
+
+
+#Default Buffers
+screen    -t canncast-new	1	ssh canncast@162.242.170.34
+screen    -t localhost		0
