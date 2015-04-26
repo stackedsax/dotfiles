@@ -11,7 +11,7 @@ alias df='df -h'
 alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias top='top -o cpu'
 alias t="task"
-alias tl="task sync &>/dev/null; task"
+alias tl="task sync &>/dev/null; task list"
 alias ta="task add"
 alias tn="task next"
 alias tw="task +work"
