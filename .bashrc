@@ -39,12 +39,17 @@ export PROMPT_COMMAND='history -a'
 # fix PATH for various brew things
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH"
 
+# default to ~/dev directory
+export CDPATH=~/dev
+
 # old prompt that fixed screen sessions -- saved for historical purposes
 #export PROMPT_COMMAND='history -a;source fixssh;echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033\\"'
 #COLOR=$(( 30 + ( $[0x`echo -n $PWD | hexdump -v -e '"\" 1/1 "%x" ""'`])%8))
 
 # current minimalist prompt
 PS1="\[\033[0;31m\][\[\033[0;33m\]\w\[\033[0;31m\]]"'$(__git_ps1 " (\[\033[0;36m\]%s\[\033[0;31m\])")'" $\[\033[0m\] "
+shopt -s autocd
+shopt -s cdspell
 
 # fix commands like curl that don't add a newline at the end of their execution
 shopt -s promptvars
