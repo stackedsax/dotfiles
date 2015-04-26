@@ -49,6 +49,7 @@ PS1="\[\033[0;31m\][\[\033[0;33m\]\w\[\033[0;31m\]]"'$(__git_ps1 " (\[\033[0;36m
 # fix commands like curl that don't add a newline at the end of their execution
 shopt -s promptvars
 PS1='$(printf "%$((COLUMNS-1))s\r")'$PS1
+PROMPT_DIRTRIM=4
 
 # turn on colours
 export CLICOLOR=1
