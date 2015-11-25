@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-Dotfiles for Alex Scamon
+Dotfiles for Alex Scammon
