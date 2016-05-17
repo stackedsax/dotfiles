@@ -17,7 +17,7 @@
 set backup
 
 ## The directory to put the backup files in.
-set backupdir "~/nano/backup"
+set backupdir "~/.nano/backup"
 
 ## Constantly display the cursor position in the status bar.
 set const

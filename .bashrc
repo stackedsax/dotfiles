@@ -19,8 +19,8 @@ if [ -f $(brew --prefix)/opt/autoenv/activate.sh ]; then
 fi
 
 # add bash completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 # history handling
@@ -37,10 +37,12 @@ shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
 # fix PATH for various brew things
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH:/opt/chefdk"
 
 # default to ~/dev directory
-export CDPATH=~/dev
+# don't forget to put a trailing slash or else you 
+# might slip into directories you do not want to be in
+export CDPATH=./:~/:~/dev/:/etc/:/var/:../:../../
 
 # old prompt that fixed screen sessions -- saved for historical purposes
 #export PROMPT_COMMAND='history -a;source fixssh;echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033\\"'
@@ -53,7 +55,7 @@ shopt -s cdspell
 
 # fix commands like curl that don't add a newline at the end of their execution
 shopt -s promptvars
-PS1='$(printf "%$((COLUMNS-1))s\r")'$PS1
+#PS1='$(printf "%$((COLUMNS-1))s\r")'$PS1
 PROMPT_DIRTRIM=4
 
 # turn on colours
@@ -86,3 +88,9 @@ fi
 # leaving this in just to feel secure that connections to Rackspace Cloud are using SSL
 export CLOUD_VERIFY_SSL=True
 
+# For MaaS
+export REPOS="$HOME/dev"
+
+# For Atlas / Vagrant Cloud for Blueflood Account
+export ATLAS_TOKEN="6jSSjsaXkTMF1Q.atlasv1.yeUCq4wg68yHG0reNna9mMQYRJC8QNM3s7y3HO9T38w7PVtXnk543uYJKV8e2jnPqCs"
+export VAGRANT_DEFAULT_PROVIDER=virtualbox # chooses virtualbox as the default provider
