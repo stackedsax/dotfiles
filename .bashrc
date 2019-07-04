@@ -3,6 +3,12 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+
+# add bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
 # load aliases and functions
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -18,10 +24,26 @@ if [ -f $(brew --prefix)/opt/autoenv/activate.sh ]; then
     . $(brew --prefix)/opt/autoenv/activate.sh
 fi
 
-# add bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+if [ -f $(brew --prefix)/bin/gopass ]; then
+    . <($(brew --prefix)/bin/gopass completion bash)
 fi
+
+if [ -f $(brew --prefix)/etc/bash_completion.d ]; then
+    . <($(brew --prefix)/etc/bash_completion.d)
+fi
+
+if [ -f $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ]; then
+    . $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+fi
+
+if [ -f $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc ]; then
+    . $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+fi
+
+[ -f $(brew --prefix)/opt/nvm/etc/bash_completion ] && . $(brew --prefix)/opt/nvm/etc/bash_completion  # This loads nvm bash_completion
+
+[ -f ~/dev/kubectl-aliases/.kubectl_aliases ] && . ~/dev/kubectl-aliases/.kubectl_aliases
+
 
 # history handling
 export HISTFILE=~/.bash_history
@@ -37,7 +59,7 @@ shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
 # fix PATH for various brew things
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH:/opt/chefdk"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH:/opt/chefdk:~/.local/bin:~/go/bin"
 
 # default to ~/dev directory
 # don't forget to put a trailing slash or else you 
@@ -88,9 +110,10 @@ fi
 # leaving this in just to feel secure that connections to Rackspace Cloud are using SSL
 export CLOUD_VERIFY_SSL=True
 
-# For MaaS
-export REPOS="$HOME/dev"
+# Free up Ctrl-S so that I can do forward-searches in bash
+stty stop ''; stty start '';
 
-# For Atlas / Vagrant Cloud for Blueflood Account
-export ATLAS_TOKEN="6jSSjsaXkTMF1Q.atlasv1.yeUCq4wg68yHG0reNna9mMQYRJC8QNM3s7y3HO9T38w7PVtXnk543uYJKV8e2jnPqCs"
-export VAGRANT_DEFAULT_PROVIDER=virtualbox # chooses virtualbox as the default provider
+#For Asciidoc
+export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

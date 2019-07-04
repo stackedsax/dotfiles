@@ -1,4 +1,4 @@
-# [Created by task 2.4.2 1/7/2015 00:08:50]
+# [Created by task 2.5.1 1/7/2015 00:08:50]
 # Taskwarrior program configuration file.
 # For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
 # 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
@@ -16,16 +16,16 @@ data.location=~/.task
 color=on
 
 # Color theme (uncomment one to use)
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/light-16.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/light-256.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-16.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-256.theme
-include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-red-256.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-green-256.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-blue-256.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-violets-256.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-yellow-green.theme
-#include /usr/local/Cellar/task/2.4.2/share/doc/task/rc/dark-gray-256.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-16.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/light-256.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-16.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-256.theme
+include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-red-256.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-green-256.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-blue-256.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-violets-256.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-yellow-green.theme
+#include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/dark-gray-256.theme
 
 taskd.certificate=/Users/ascammon/.task/private.cert
 taskd.key=/Users/ascammon/.task/private.key

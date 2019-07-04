@@ -20,7 +20,7 @@ set backup
 set backupdir "~/.nano/backup"
 
 ## Constantly display the cursor position in the status bar.
-set const
+set constantshow
 
 ## Use cut to end of line with ^K by default
 # set cut
@@ -186,13 +186,11 @@ color brightblue start="/\*" end="\*/"
 
 set nowrap
 set smooth
-set autoindent
 set historylog
 set morespace
 set tabsize 4
 set tabstospaces
-set mouse
-set const
+set constantshow
 
 ## from brew
 

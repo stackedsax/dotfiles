@@ -14,6 +14,14 @@ if [ -f ~/.profile ]; then
    source ~/.profile
 fi
 
+if [ -f /usr/local/opt/dvm/dvm.sh ]; then
+   source /usr/local/opt/dvm/dvm.sh
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+
 # Set the SSH vars so that ssh agent forwarding will work and start screen
 #grabssh; screen -RDS alex;
+
 
