@@ -59,7 +59,7 @@ shopt -s histappend
 export PROMPT_COMMAND='history -a'
 
 # fix PATH for various brew things
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH:/opt/chefdk:~/.local/bin:~/go/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH:/opt/chefdk:~/.local/bin:~/go/bin:~/Library/Python/2.7/bin"
 
 # default to ~/dev directory
 # don't forget to put a trailing slash or else you 
