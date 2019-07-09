@@ -88,7 +88,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export GREP_OPTIONS='--color=auto'
 
 # default editor
-export EDITOR="nano -SwizF"
+export EDITOR="nano -wizF"
 
 # for svn
 export SVN_EDITOR=$EDITOR
@@ -103,17 +103,10 @@ export ANSIBLE_HOSTS=~/ansible_hosts
 # python
 if [[ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
     source /usr/local/bin/virtualenvwrapper_lazy.sh
-else
-    echo "WARNING: Can't find virtualenvwrapper_lazy.sh"
 fi
-
-# leaving this in just to feel secure that connections to Rackspace Cloud are using SSL
-export CLOUD_VERIFY_SSL=True
 
 # Free up Ctrl-S so that I can do forward-searches in bash
 stty stop ''; stty start '';
 
-#For Asciidoc
-export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
-
+# Add fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

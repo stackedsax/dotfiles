@@ -1,6 +1,6 @@
 # some useful aliases
-alias nano='nano -SwizF'
-alias n='nano -SwzF'
+alias nano='nano -wizF'
+alias n='nano -wzF'
 alias l.='ls -dp .*'
 alias l='ls -lp'
 alias ll='ls -lap'
