@@ -1,112 +1,106 @@
-# source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+## set some useful $PATHs
+export PATH="$PATH:\
+$HOME/bin:\
+/usr/local/sbin:\
+/usr/local/share/npm/bin:\
+$HOME/go/bin:\
+$HOME/.local/bin:\
+/usr/local/opt/python@3.8/bin:\
+$HOME/Library/Python/2.7/bin:\
+$HOME/.cargo/bin:\
+$HOME/.rvm/bin"
 
+## Set bash prefix variable so I don't have to run brew over and over to get the 
+## prefix.  Minor useless-optimization.
+BREW_PREFIX=$(brew --prefix)
 
-# add bash completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+## add bash completion
+[ -f $BREW_PREFIX/etc/bash_completion ] && . $BREW_PREFIX/etc/bash_completion
 
-# load aliases and functions
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+## load aliases and functions
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
-# jenv
-if which jenv > /dev/null; then 
-    eval "$(jenv init -)"
-fi
+## gcloud completion
+[ -f $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+[ -f $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc ] && . $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
 
-# start autoenv
-if [ -f $(brew --prefix)/opt/autoenv/activate.sh ]; then
-    . $(brew --prefix)/opt/autoenv/activate.sh
-fi
+## nvm -- this adds considerable startup time to new shells so leaving off
+## unless I'm doing node development
+# export NVM_DIR="$HOME/.nvm"
+# [ -s $BREW_PREFIX/opt/nvm/nvm.sh ] && . $BREW_PREFIX/opt/nvm/nvm.sh
+# [ -s $BREW_PREFIX/opt/nvm/etc/bash_completion ] && . $BREW_PREFIX/opt/nvm/etc/bash_completion
 
-if [ -f $(brew --prefix)/bin/gopass ]; then
-    . <($(brew --prefix)/bin/gopass completion bash)
-fi
+## add dvm
+[ -f $BREW_PREFIX/opt/dvm/dvm.sh ] && . $BREW_PREFIX/opt/dvm/dvm.sh
 
-if [ -f $(brew --prefix)/etc/bash_completion.d ]; then
-    . <($(brew --prefix)/etc/bash_completion.d)
-fi
+## Load RVM into a shell session *as a function*
+[ -s $HOME/.rvm/scripts/rvm ] && . $HOME/.rvm/scripts/rvm
 
-if [ -f $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ]; then
-    . $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
-fi
+## source grc to make colors pretty
+[ -f $BREW_PREFIX/etc/grc.bashrc ] && . $BREW_PREFIX/etc/grc.bashrc
 
-if [ -f $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc ]; then
-    . $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
-fi
-
-[ -f $(brew --prefix)/opt/nvm/etc/bash_completion ] && . $(brew --prefix)/opt/nvm/etc/bash_completion  # This loads nvm bash_completion
-
+## lots of kubectl shortcuts
 [ -f ~/dev/kubectl-aliases/.kubectl_aliases ] && . ~/dev/kubectl-aliases/.kubectl_aliases
 
+## add fzf
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
-# history handling
+## jenv
+which jenv > /dev/null && eval "$(jenv init -)"
+
+## zoxide
+which zoxide > /dev/null && eval "$(zoxide init bash)"
+
+## direnv
+which direnv > /dev/null && eval "$(direnv hook bash)"
+
+## history handling
 export HISTFILE=~/.bash_history
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoredups
 export HISTSIZE=20000
 export HISTFILESIZE=20000
 export HISTTIMEFORMAT="%m/%d/%y %T "
 
-# append to bash_history if Terminal.app quits
-shopt -s histappend
+## output history to history file immediately
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-# output history to history file immediately
-export PROMPT_COMMAND='history -a'
-
-# fix PATH for various brew things
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$HOME/bin:$PATH:/opt/chefdk:~/.local/bin:~/go/bin:~/Library/Python/2.7/bin"
-
-# default to ~/dev directory
-# don't forget to put a trailing slash or else you 
-# might slip into directories you do not want to be in
-export CDPATH=./:~/:~/dev/:/etc/:/var/:../:../../
-
-# old prompt that fixed screen sessions -- saved for historical purposes
-#export PROMPT_COMMAND='history -a;source fixssh;echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033\\"'
-#COLOR=$(( 30 + ( $[0x`echo -n $PWD | hexdump -v -e '"\" 1/1 "%x" ""'`])%8))
-
-# current minimalist prompt
+## current minimalist prompt
 PS1="\[\033[0;31m\][\[\033[0;33m\]\w\[\033[0;31m\]]"'$(__git_ps1 " (\[\033[0;36m\]%s\[\033[0;31m\])")'" $\[\033[0m\] "
-shopt -s autocd
-shopt -s cdspell
-
-# fix commands like curl that don't add a newline at the end of their execution
-shopt -s promptvars
-#PS1='$(printf "%$((COLUMNS-1))s\r")'$PS1
 PROMPT_DIRTRIM=4
 
-# turn on colours
+## autocd: when I'm too lazy to type 'z'
+## cdspell: fix my cd mistakes for me, please
+## promptvars: fix commands like curl that don't add a newline at the end of their execution
+shopt -s autocd cdspell promptvars
+
+## add some useful paths to CDPATH
+export CDPATH="\
+./:\
+~/:\
+~/dev/:\
+/etc/:\
+/var/:\
+../:\
+../../"
+
+## turn on colours
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-
-# tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
-# default editor
+## default editor
 export EDITOR="nano -wizF"
-
-# for svn
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=$EDITOR
 
-# make bash stop auto-completing hidden files
+## make bash stop auto-completing hidden files
 bind 'set match-hidden-files off'
 
-# ansible
+## ansible
 export ANSIBLE_HOSTS=~/ansible_hosts
 
-# python
-if [[ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
-    source /usr/local/bin/virtualenvwrapper_lazy.sh
-fi
+## turn off homebrew updating; use homebrew-autoupdate instead
+export HOMEBREW_NO_AUTO_UPDATE="1"
 
-# Free up Ctrl-S so that I can do forward-searches in bash
+## free up Ctrl-S so that I can do forward-searches in bash
 stty stop ''; stty start '';
-
-# Add fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash

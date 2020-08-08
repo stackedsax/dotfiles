@@ -20,19 +20,20 @@ color=on
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/light-256.theme
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-16.theme
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-256.theme
-include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-red-256.theme
+#include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-red-256.theme
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-green-256.theme
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-blue-256.theme
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-violets-256.theme
-#include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-yellow-green.theme
+include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-yellow-green.theme
 #include /usr/local/Cellar/task/latest/share/doc/task/rc/dark-gray-256.theme
 
-taskd.certificate=/Users/ascammon/.task/private.cert
-taskd.key=/Users/ascammon/.task/private.key
+taskd.certificate=/Users/ascammon/.task/private.certificate.pem
+taskd.key=/Users/ascammon/.task/private.key.pem
 taskd.ca=/Users/ascammon/.task/ca.cert.pem
 taskd.server=taskwarrior.inthe.am:53589
-taskd.credentials=inthe_am/alex98f56376fd264217/4e85a6ab-f4c5-4896-a298-5fd1cb1a7c0e
+taskd.credentials=inthe_am/alex/2afd77d4-ec71-4859-b1a3-7b1193124728
 taskd.trust=ignore hostname
+
 
 #Next Three Custom report
 report.nextthree.description=next three tasks

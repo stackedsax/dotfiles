@@ -1,12 +1,17 @@
 # some useful aliases
 alias nano='nano -wizF'
-alias n='nano -wzF'
-alias l.='ls -dp .*'
-alias l='ls -lp'
-alias ll='ls -lap'
-alias ls='ls -p'
+alias n='nano'
+alias s="subl"
+alias cat="bat"
+alias f="fd"
+alias g="rg"
+alias lt='exa -TalFL3 --group-directories-first --git --color-scale'
+alias ltd='exa -TalFDL3 --group-directories-first --git --color-scale'
+alias l='exa -laF --group-directories-first --git --time-style=default --color-scale'
+alias ll='l'
+alias ls='exa -aF --group-directories-first'
+alias l.='ll -D'
 alias vi='vim'
-alias sd='svn update'
 alias df='df -h'
 alias duf='du -sk ./* | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
 alias kshell='kubectl run -it alex-shell --image giantswarm/tiny-tools --restart Never --rm -- sh'
@@ -15,16 +20,15 @@ alias t="task"
 alias tl="task sync &>/dev/null; task list"
 alias ta="task add"
 alias taw="task add +work"
+alias tag="task add +gr"
 alias tam="task add +me"
 alias tas="task add +studio"
 alias tav="task add +me +vacay"
-alias tn="task next"
-alias tw="task +work"
-alias tm="task +me"
-alias ts="task +studio"
-alias tv="task sync &>/dev/null; task list +vacay"
-alias mou="open -a Mou.app"
-alias cat='pygmentize -g -O style=colorful'
+alias tn="task sync &>/dev/null; task next"
+alias tw="task sync &>/dev/null; task +work"
+alias tg="task sync &>/dev/null; task +gr"
+alias tm="task sync &>/dev/null; task +me"
+alias ts="task sync &>/dev/null; task +studio"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -34,10 +38,7 @@ alias ......="cd ../../../../.."
 complete -o default -F __start_kubectl k
 
 # some useful functions
-function g { grep -Rin "$*" * | grep -v svn; }
-function f { find . -iname "*$**" | grep -v svn; }
-function trm { task $* delete; }
-function sc { /Applications/SopCast.app/Contents/Resources/binaries/m32/sp-sc-auth $* 3908 8902 > /dev/null; }
-function td { yes | task $* done; } 
-function ts { task $* start; } 
-function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+function trm { [ $# -gt 0 ] && task $* delete || echo "At least one task ID is required"; }
+function td { [ $# -gt 0 ] && yes | task $* done || echo "At least one task ID is required"; }
+function tst { [ $# -gt 0 ] && task $* start || echo "At least one task ID is required"; }
+function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
