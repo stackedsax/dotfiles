@@ -10,13 +10,16 @@ $HOME/Library/Python/2.7/bin:\
 $HOME/.cargo/bin:\
 $HOME/.rvm/bin"
 
+eval $(/opt/homebrew/bin/brew shellenv)
+
 ## Set bash prefix variable so I don't have to run brew over and over to get the 
 ## prefix.  Minor useless-optimization.
 BREW_PREFIX=$(brew --prefix)
 
+
 ## add bash completion
 #[ -f $BREW_PREFIX/etc/bash_completion ] && . $BREW_PREFIX/etc/bash_completion
-[ -f "/usr/local/etc/profile.d/bash_completion.sh" ] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[ -f "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
 
 ## load aliases and functions
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
