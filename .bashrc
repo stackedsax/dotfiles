@@ -15,10 +15,14 @@ $HOME/.rvm/bin"
 BREW_PREFIX=$(brew --prefix)
 
 ## add bash completion
-[ -f $BREW_PREFIX/etc/bash_completion ] && . $BREW_PREFIX/etc/bash_completion
+#[ -f $BREW_PREFIX/etc/bash_completion ] && . $BREW_PREFIX/etc/bash_completion
+[ -f "/usr/local/etc/profile.d/bash_completion.sh" ] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 ## load aliases and functions
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+
+## todoist completion
+[ -f ~/dev/todoist/todoist_functions_fzf_bash.sh ] && . ~/dev/todoist/todoist_functions_fzf_bash.sh
 
 ## gcloud completion
 [ -f $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
@@ -31,10 +35,8 @@ BREW_PREFIX=$(brew --prefix)
 # [ -s $BREW_PREFIX/opt/nvm/etc/bash_completion ] && . $BREW_PREFIX/opt/nvm/etc/bash_completion
 
 ## add dvm
-[ -f $BREW_PREFIX/opt/dvm/dvm.sh ] && . $BREW_PREFIX/opt/dvm/dvm.sh
-
-## Load RVM into a shell session *as a function*
-[ -s $HOME/.rvm/scripts/rvm ] && . $HOME/.rvm/scripts/rvm
+## disabling for now since this interferes with SublimeREPL
+# [ -f $BREW_PREFIX/opt/dvm/dvm.sh ] && . $BREW_PREFIX/opt/dvm/dvm.sh
 
 ## source grc to make colors pretty
 [ -f $BREW_PREFIX/etc/grc.bashrc ] && . $BREW_PREFIX/etc/grc.bashrc
@@ -45,14 +47,19 @@ BREW_PREFIX=$(brew --prefix)
 ## add fzf
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
-## jenv
-which jenv > /dev/null && eval "$(jenv init -)"
+## Add Todoist Functions
+#[ -f $BREW_PREFIX/share/zsh/site-functions/_todoist_fzf ] && . $BREW_PREFIX/share/zsh/site-functions/_todoist_fzf
+
+## Load RVM into a shell session *as a function*
+[ -s $HOME/.rvm/scripts/rvm ] && . $HOME/.rvm/scripts/rvm
+
+## pyenv, jenv, direnv
+command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
+command -v jenv 1>/dev/null 2>&1 && eval "$(jenv init -)"
+command -v direnv 1>/dev/null 2>&1 && eval "$(direnv hook bash)"
 
 ## zoxide
-which zoxide > /dev/null && eval "$(zoxide init bash)"
-
-## direnv
-which direnv > /dev/null && eval "$(direnv hook bash)"
+command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init bash)"
 
 ## history handling
 export HISTFILE=~/.bash_history
