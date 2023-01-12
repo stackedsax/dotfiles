@@ -185,9 +185,9 @@ color brightblue start="/\*" end="\*/"
 
 
 set nowrap
-set smooth
+#set smooth
 set historylog
-set morespace
+#set morespace
 set tabsize 4
 set tabstospaces
 set constantshow

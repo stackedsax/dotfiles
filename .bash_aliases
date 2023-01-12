@@ -1,5 +1,5 @@
 # some useful aliases
-alias nano='nano -wizF'
+alias nano='nano -wiF'
 alias n='nano'
 alias s="subl"
 alias cat="bat"

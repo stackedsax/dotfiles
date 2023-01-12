@@ -99,7 +99,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export GREP_OPTIONS='--color=auto'
 
 ## default editor
-export EDITOR="nano -wizF"
+export EDITOR="nano -wiF"
 export SVN_EDITOR=$EDITOR
 export GIT_EDITOR=$EDITOR
 
@@ -114,3 +114,9 @@ export HOMEBREW_NO_AUTO_UPDATE="1"
 
 ## free up Ctrl-S so that I can do forward-searches in bash
 stty stop ''; stty start '';
+. "$HOME/.cargo/env"
+
+## starship
+eval "$(starship init bash)"
+
+eval "$(thefuck --alias)"
