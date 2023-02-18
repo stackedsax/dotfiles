@@ -1,5 +1,5 @@
 # some useful aliases
-alias nano='nano -wizF'
+alias nano='nano -wiF'
 alias n='nano'
 alias s='subl'
 alias cat='bat'
@@ -31,7 +31,7 @@ alias ......='cd ../../../../..'
 # kubectl autocompletion.  To set this up, run:
 # $ kubectl completion bash > $(brew --prefix)/etc/bash_completion.d/kubectl
 # Not great, but maybe I'll create a brew package someday to do this for me...
-complete -o default -F __start_kubectl k
+#complete -o default -F __start_kubectl k
 
 # some useful functions for taskwarrior
 # function trm { [ $# -gt 0 ] && task $* delete || echo "At least one task ID is required"; }
@@ -62,10 +62,10 @@ function tas { [ $# -gt 0 ] && todoist --color add -P 2247262860 "$*" || echo "P
 # alias tm='todoist sync &>/dev/null; todoist --color list -f "#me & !#Welcome"'
 # alias ts='todoist sync &>/dev/null; todoist --color list -f "#studio"'
 
-complete -F _complete_alias tc
-complete -F _complete_alias t
-complete -F _complete_alias tl
-complete -F _complete_alias task
-complete -W 'todoist delete' td
-complete -F _complete_alias tc
-complete -F _complete_alias trm
+#complete -F _complete_alias tc
+#complete -F _complete_alias t
+#complete -F _complete_alias tl
+#complete -F _complete_alias task
+#complete -W 'todoist delete' td
+#complete -F _complete_alias tc
+#complete -F _complete_alias trm
