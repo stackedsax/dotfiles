@@ -110,7 +110,7 @@ eval export PATH="/Users/ascammon/.jenv/shims:${PATH}"
 export JENV_SHELL=zsh
 export JENV_LOADED=1
 unset JAVA_HOME
-source '/opt/homebrew/Cellar/jenv/0.5.5_2/libexec/completions/jenv.zsh'
+source '/opt/homebrew/Cellar/jenv/latest/libexec/completions/jenv.zsh'
 jenv rehash 2>/dev/null
 jenv refresh-plugins
 jenv() {
